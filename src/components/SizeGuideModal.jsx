@@ -12,147 +12,173 @@ export default function SizeGuideModal({ onClose }) {
         style={{
           width: '100%',
           maxWidth: '650px',
-          padding: '2rem',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          padding: '0',
           position: 'relative',
-          border: '1px solid var(--border-gold)'
+          background: '#121216',
+          border: '1px solid var(--border-strong)',
+          borderRadius: 'var(--radius-lg)'
         }}
       >
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            background: 'transparent',
-            border: 'none',
-            color: '#a1a1aa',
-            cursor: 'pointer'
-          }}
-        >
-          <X size={20} />
-        </button>
+        {/* Sticky Header Bar */}
+        <div style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.9rem 1.4rem',
+          borderBottom: '1px solid var(--border-subtle)',
+          background: '#0a0a0c'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Ruler size={16} style={{ color: '#fff' }} />
+            <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              SIZE & FIT GUIDE
+            </h2>
+          </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
-          <Ruler size={20} style={{ color: 'var(--gold-primary)' }} />
-          <h2 className="font-serif" style={{ fontSize: '1.6rem', color: '#fff' }}>
-            Size & Fit Guide
-          </h2>
-        </div>
-
-        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
-          Atalya Clothing garments are tailored according to international contemporary fitting standards.
-        </p>
-
-        {/* Gender Tabs */}
-        <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.4)', padding: '0.3rem', borderRadius: '8px' }}>
           <button
-            onClick={() => setTab('women')}
+            onClick={onClose}
+            title="Close"
             style={{
-              flex: 1,
-              padding: '0.5rem',
-              borderRadius: '6px',
+              background: '#ffffff',
               border: 'none',
-              background: tab === 'women' ? 'var(--gold-gradient)' : 'transparent',
-              color: tab === 'women' ? '#000' : '#a1a1aa',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-              cursor: 'pointer'
+              color: '#000000',
+              borderRadius: '50%',
+              width: '32px',
+              height: '32px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              fontWeight: 700
             }}
           >
-            Women's Sizing
-          </button>
-          <button
-            onClick={() => setTab('men')}
-            style={{
-              flex: 1,
-              padding: '0.5rem',
-              borderRadius: '6px',
-              border: 'none',
-              background: tab === 'men' ? 'var(--gold-gradient)' : 'transparent',
-              color: tab === 'men' ? '#000' : '#a1a1aa',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-              cursor: 'pointer'
-            }}
-          >
-            Men's & Unisex Sizing
+            <X size={18} />
           </button>
         </div>
 
-        {/* Table */}
-        <div style={{ overflowX: 'auto', marginBottom: '1.5rem' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--border-gold)', color: 'var(--gold-primary)' }}>
-                <th style={{ padding: '0.6rem' }}>Size</th>
-                <th style={{ padding: '0.6rem' }}>Bust / Chest (in)</th>
-                <th style={{ padding: '0.6rem' }}>Waist (in)</th>
-                <th style={{ padding: '0.6rem' }}>Hips (in)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tab === 'women' ? (
-                <>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>XS (UK 6)</td>
-                    <td style={{ padding: '0.6rem' }}>31 - 33</td>
-                    <td style={{ padding: '0.6rem' }}>24 - 25</td>
-                    <td style={{ padding: '0.6rem' }}>34 - 35</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>S (UK 8)</td>
-                    <td style={{ padding: '0.6rem' }}>33 - 35</td>
-                    <td style={{ padding: '0.6rem' }}>26 - 27</td>
-                    <td style={{ padding: '0.6rem' }}>36 - 37</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>M (UK 10)</td>
-                    <td style={{ padding: '0.6rem' }}>35 - 37</td>
-                    <td style={{ padding: '0.6rem' }}>28 - 29</td>
-                    <td style={{ padding: '0.6rem' }}>38 - 39</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>L (UK 12)</td>
-                    <td style={{ padding: '0.6rem' }}>37 - 39</td>
-                    <td style={{ padding: '0.6rem' }}>30 - 32</td>
-                    <td style={{ padding: '0.6rem' }}>40 - 42</td>
-                  </tr>
-                </>
-              ) : (
-                <>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>S (38)</td>
-                    <td style={{ padding: '0.6rem' }}>36 - 38</td>
-                    <td style={{ padding: '0.6rem' }}>30 - 31</td>
-                    <td style={{ padding: '0.6rem' }}>37 - 38</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>M (40)</td>
-                    <td style={{ padding: '0.6rem' }}>39 - 41</td>
-                    <td style={{ padding: '0.6rem' }}>32 - 33</td>
-                    <td style={{ padding: '0.6rem' }}>39 - 40</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>L (42)</td>
-                    <td style={{ padding: '0.6rem' }}>42 - 44</td>
-                    <td style={{ padding: '0.6rem' }}>34 - 36</td>
-                    <td style={{ padding: '0.6rem' }}>41 - 43</td>
-                  </tr>
-                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
-                    <td style={{ padding: '0.6rem', fontWeight: 600, color: '#fff' }}>XL (44)</td>
-                    <td style={{ padding: '0.6rem' }}>45 - 47</td>
-                    <td style={{ padding: '0.6rem' }}>37 - 39</td>
-                    <td style={{ padding: '0.6rem' }}>44 - 46</td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
+        <div style={{ padding: '1.6rem' }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.4rem', textAlign: 'center' }}>
+            Garments are tailored according to international contemporary fitting standards.
+          </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212,175,55,0.1)', padding: '0.8rem', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--gold-light)' }}>
-          <Info size={16} />
-          <span>Need custom sizing or tailoring help? Message us directly on WhatsApp or call <strong>077 431 1313</strong> for personal advice!</span>
+          {/* Gender Tabs */}
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.4rem', background: '#0a0a0c', padding: '0.25rem', borderRadius: '6px' }}>
+            <button
+              onClick={() => setTab('women')}
+              style={{
+                flex: 1,
+                padding: '0.45rem',
+                borderRadius: '4px',
+                border: 'none',
+                background: tab === 'women' ? '#ffffff' : 'transparent',
+                color: tab === 'women' ? '#000000' : '#a1a1aa',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                textTransform: 'uppercase'
+              }}
+            >
+              WOMEN'S SIZING
+            </button>
+            <button
+              onClick={() => setTab('men')}
+              style={{
+                flex: 1,
+                padding: '0.45rem',
+                borderRadius: '4px',
+                border: 'none',
+                background: tab === 'men' ? '#ffffff' : 'transparent',
+                color: tab === 'men' ? '#000000' : '#a1a1aa',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                textTransform: 'uppercase'
+              }}
+            >
+              MEN'S & UNISEX SIZING
+            </button>
+          </div>
+
+          {/* Table */}
+          <div style={{ overflowX: 'auto', marginBottom: '1.4rem' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem', textAlign: 'center' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)' }}>
+                  <th style={{ padding: '0.6rem', textTransform: 'uppercase' }}>Size</th>
+                  <th style={{ padding: '0.6rem', textTransform: 'uppercase' }}>Bust / Chest (in)</th>
+                  <th style={{ padding: '0.6rem', textTransform: 'uppercase' }}>Waist (in)</th>
+                  <th style={{ padding: '0.6rem', textTransform: 'uppercase' }}>Hips (in)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tab === 'women' ? (
+                  <>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>XS (UK 6)</td>
+                      <td style={{ padding: '0.6rem' }}>31 - 33</td>
+                      <td style={{ padding: '0.6rem' }}>24 - 25</td>
+                      <td style={{ padding: '0.6rem' }}>34 - 35</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>S (UK 8)</td>
+                      <td style={{ padding: '0.6rem' }}>33 - 35</td>
+                      <td style={{ padding: '0.6rem' }}>26 - 27</td>
+                      <td style={{ padding: '0.6rem' }}>36 - 37</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>M (UK 10)</td>
+                      <td style={{ padding: '0.6rem' }}>35 - 37</td>
+                      <td style={{ padding: '0.6rem' }}>28 - 29</td>
+                      <td style={{ padding: '0.6rem' }}>38 - 39</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>L (UK 12)</td>
+                      <td style={{ padding: '0.6rem' }}>37 - 39</td>
+                      <td style={{ padding: '0.6rem' }}>30 - 32</td>
+                      <td style={{ padding: '0.6rem' }}>40 - 42</td>
+                    </tr>
+                  </>
+                ) : (
+                  <>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>S (38)</td>
+                      <td style={{ padding: '0.6rem' }}>36 - 38</td>
+                      <td style={{ padding: '0.6rem' }}>30 - 31</td>
+                      <td style={{ padding: '0.6rem' }}>37 - 38</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>M (40)</td>
+                      <td style={{ padding: '0.6rem' }}>39 - 41</td>
+                      <td style={{ padding: '0.6rem' }}>32 - 33</td>
+                      <td style={{ padding: '0.6rem' }}>39 - 40</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>L (42)</td>
+                      <td style={{ padding: '0.6rem' }}>42 - 44</td>
+                      <td style={{ padding: '0.6rem' }}>34 - 36</td>
+                      <td style={{ padding: '0.6rem' }}>41 - 43</td>
+                    </tr>
+                    <tr style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                      <td style={{ padding: '0.6rem', fontWeight: 700, color: '#fff' }}>XL (44)</td>
+                      <td style={{ padding: '0.6rem' }}>45 - 47</td>
+                      <td style={{ padding: '0.6rem' }}>37 - 39</td>
+                      <td style={{ padding: '0.6rem' }}>44 - 46</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', background: '#0a0a0c', padding: '0.75rem', borderRadius: '6px', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+            <Info size={15} style={{ color: '#fff' }} />
+            <span>Need custom sizing? Call <strong>077 431 1313</strong> for support.</span>
+          </div>
         </div>
       </div>
     </div>
