@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, ShoppingBag, MessageCircle, Star, Ruler, Check, Truck, ShieldCheck } from 'lucide-react';
+import { X, Heart, Star, Ruler } from 'lucide-react';
 
 export default function ProductModal({
   product,
@@ -17,12 +17,7 @@ export default function ProductModal({
   const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
   const [quantity, setQuantity] = useState(1);
 
-  const handleAdd = () => {
-    onAddToCart(product, selectedSize, selectedColor, quantity);
-    onClose();
-  };
-
-  const handleDirectWhatsApp = () => {
+  const handleDirectOrder = () => {
     onWhatsAppOrder(product, selectedSize, selectedColor, quantity);
   };
 
@@ -33,41 +28,84 @@ export default function ProductModal({
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%',
-          maxWidth: '900px',
+          maxWidth: '840px',
           maxHeight: '90vh',
           overflowY: 'auto',
           padding: '0',
           position: 'relative',
-          border: '1px solid var(--border-gold)'
+          background: '#121216',
+          border: '1px solid var(--border-strong)',
+          borderRadius: 'var(--radius-lg)'
         }}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            background: 'rgba(0,0,0,0.6)',
-            border: '1px solid var(--border-light)',
-            color: '#fff',
-            borderRadius: '50%',
-            width: '38px',
-            height: '38px',
-            display: 'flex',
-            alignItems: 'center',
-            justify: 'center',
-            cursor: 'pointer',
-            zIndex: 10
-          }}
-        >
-          <X size={20} />
-        </button>
+        {/* Sticky Header Bar with Close Button at Far Top Right */}
+        <div style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.9rem 1.4rem',
+          borderBottom: '1px solid var(--border-subtle)',
+          background: '#0a0a0c'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <span className="badge-accent">{product.category}</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>{product.gender}</span>
+          </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+            <button
+              onClick={() => onToggleWishlist(product)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: isWishlisted ? '#e63946' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                fontSize: '0.78rem',
+                fontWeight: 700
+              }}
+            >
+              <Heart size={16} fill={isWishlisted ? '#e63946' : 'none'} />
+              <span>{isWishlisted ? 'SAVED' : 'WISHLIST'}</span>
+            </button>
+
+            {/* Exit button in top right corner */}
+            <button
+              onClick={onClose}
+              title="Close modal (Esc)"
+              style={{
+                background: '#ffffff',
+                border: 'none',
+                color: '#000000',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                fontWeight: 700,
+                transition: 'transform 0.2s ease',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Modal Content Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           {/* Left Column: Image Gallery */}
-          <div style={{ padding: '1.5rem', background: '#0b0b0e', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ position: 'relative', paddingTop: '110%', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
+          <div style={{ padding: '1.4rem', background: '#0a0a0c', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            <div style={{ position: 'relative', paddingTop: '115%', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--border-subtle)' }}>
               <img
                 src={selectedImage}
                 alt={product.name}
@@ -75,18 +113,18 @@ export default function ProductModal({
               />
             </div>
 
-            {/* Thumbnail selector */}
-            <div style={{ display: 'flex', gap: '0.6rem', overflowX: 'auto' }}>
+            {/* Gallery Thumbnails */}
+            <div style={{ display: 'flex', gap: '0.5rem', overflowX: 'auto', justifyContent: 'center' }}>
               {(product.gallery || [product.image]).map((imgUrl, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(imgUrl)}
                   style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '6px',
+                    width: '52px',
+                    height: '52px',
+                    borderRadius: '4px',
                     overflow: 'hidden',
-                    border: selectedImage === imgUrl ? '2px solid var(--gold-primary)' : '1px solid var(--border-light)',
+                    border: selectedImage === imgUrl ? '2px solid #ffffff' : '1px solid var(--border-subtle)',
                     cursor: 'pointer',
                     background: 'none',
                     padding: 0
@@ -98,107 +136,94 @@ export default function ProductModal({
             </div>
           </div>
 
-          {/* Right Column: Product Specs & Options */}
-          <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {/* Right Column: Product Specs & Ordering */}
+          <div style={{ padding: '1.6rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <span className="badge-gold">{product.category} • {product.gender}</span>
-                <button
-                  onClick={() => onToggleWishlist(product)}
-                  style={{ background: 'transparent', border: 'none', color: isWishlisted ? '#e63946' : '#a1a1aa', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.85rem' }}
-                >
-                  <Heart size={18} fill={isWishlisted ? '#e63946' : 'none'} />
-                  <span>{isWishlisted ? 'Wishlisted' : 'Save'}</span>
-                </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#ffb703', fontSize: '0.8rem', marginBottom: '0.5rem' }}>
+                <Star size={13} fill="#ffb703" />
+                <strong>{product.rating}</strong>
+                <span style={{ color: 'var(--text-muted)' }}>({product.reviewsCount} reviews)</span>
               </div>
 
-              <h2 className="font-serif" style={{ fontSize: '1.8rem', color: '#fff', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.4rem', textTransform: 'uppercase' }}>
                 {product.name}
               </h2>
 
-              {/* Rating */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#ffb703', fontSize: '0.85rem', marginBottom: '1rem' }}>
-                <Star size={14} fill="#ffb703" />
-                <strong>{product.rating}</strong>
-                <span style={{ color: 'var(--text-muted)' }}>({product.reviewsCount} customer reviews)</span>
-              </div>
-
-              {/* Price */}
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.8rem', marginBottom: '1.2rem' }}>
-                <span style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
-                  Rs. {product.price.toLocaleString()}
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem', marginBottom: '1rem' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
+                  LKR {product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && (
-                  <span style={{ fontSize: '1rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                    Rs. {product.originalPrice.toLocaleString()}
+                  <span style={{ fontSize: '0.88rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
+                    LKR {product.originalPrice.toLocaleString()}
                   </span>
                 )}
               </div>
 
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.4rem', lineHeight: 1.6 }}>
                 {product.description}
               </p>
 
               {/* Color Selection */}
-              <div style={{ marginBottom: '1.2rem' }}>
-                <label style={{ fontSize: '0.82rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Color: <strong style={{ color: '#fff' }}>{selectedColor}</strong>
+              <div style={{ marginBottom: '1.1rem' }}>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 700 }}>
+                  COLOR: <strong style={{ color: '#fff' }}>{selectedColor}</strong>
                 </label>
-                <div style={{ display: 'flex', gap: '0.6rem' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
                   {product.colors.map((col) => (
                     <button
                       key={col.name}
                       onClick={() => setSelectedColor(col.name)}
-                      title={col.name}
                       style={{
-                        padding: '0.4rem 0.8rem',
-                        borderRadius: '6px',
-                        border: selectedColor === col.name ? '1px solid var(--gold-primary)' : '1px solid var(--border-light)',
-                        background: selectedColor === col.name ? 'rgba(212,175,55,0.15)' : 'rgba(0,0,0,0.3)',
-                        color: selectedColor === col.name ? 'var(--gold-primary)' : 'var(--text-secondary)',
-                        fontSize: '0.8rem',
+                        padding: '0.35rem 0.75rem',
+                        borderRadius: '4px',
+                        border: selectedColor === col.name ? '1px solid #ffffff' : '1px solid var(--border-subtle)',
+                        background: selectedColor === col.name ? '#ffffff' : '#0a0a0c',
+                        color: selectedColor === col.name ? '#000000' : 'var(--text-secondary)',
+                        fontSize: '0.78rem',
+                        fontWeight: 700,
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.4rem'
+                        gap: '0.35rem'
                       }}
                     >
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: col.hex, display: 'inline-block' }} />
+                      <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: col.hex, display: 'inline-block', border: '1px solid rgba(0,0,0,0.2)' }} />
                       {col.name}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Size Selection & Size Guide */}
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <label style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    Select Size: <strong style={{ color: '#fff' }}>{selectedSize}</strong>
+              {/* Size Selection */}
+              <div style={{ marginBottom: '1.2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 700 }}>
+                    SIZE: <strong style={{ color: '#fff' }}>{selectedSize}</strong>
                   </label>
                   <button
                     onClick={onOpenSizeGuide}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--gold-primary)', cursor: 'pointer', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}
+                    style={{ background: 'transparent', border: 'none', color: '#ffffff', cursor: 'pointer', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.25rem', textDecoration: 'underline' }}
                   >
-                    <Ruler size={13} />
+                    <Ruler size={12} />
                     <span>Size Guide</span>
                   </button>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
                   {product.sizes.map((sz) => (
                     <button
                       key={sz}
                       onClick={() => setSelectedSize(sz)}
                       style={{
-                        minWidth: '42px',
-                        height: '42px',
-                        borderRadius: '6px',
-                        border: selectedSize === sz ? '1px solid var(--gold-primary)' : '1px solid var(--border-light)',
-                        background: selectedSize === sz ? 'var(--gold-gradient)' : 'rgba(0,0,0,0.3)',
-                        color: selectedSize === sz ? '#000' : 'var(--text-primary)',
-                        fontWeight: selectedSize === sz ? 700 : 500,
-                        fontSize: '0.85rem',
+                        minWidth: '38px',
+                        height: '38px',
+                        borderRadius: '4px',
+                        border: selectedSize === sz ? '1px solid #ffffff' : '1px solid var(--border-subtle)',
+                        background: selectedSize === sz ? '#ffffff' : '#0a0a0c',
+                        color: selectedSize === sz ? '#000000' : 'var(--text-primary)',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
                         cursor: 'pointer'
                       }}
                     >
@@ -209,21 +234,21 @@ export default function ProductModal({
               </div>
 
               {/* Quantity Counter */}
-              <div style={{ marginBottom: '1.8rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <label style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Quantity:
+              <div style={{ marginBottom: '1.4rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 700 }}>
+                  QTY:
                 </label>
-                <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--border-light)', borderRadius: '6px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--border-subtle)', borderRadius: '4px', overflow: 'hidden', background: '#0a0a0c' }}>
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: '#fff', width: '32px', height: '32px', cursor: 'pointer' }}
+                    style={{ background: 'transparent', border: 'none', color: '#fff', width: '30px', height: '30px', cursor: 'pointer', fontWeight: 700 }}
                   >
                     -
                   </button>
-                  <span style={{ padding: '0 0.8rem', color: '#fff', fontSize: '0.9rem', fontWeight: 600 }}>{quantity}</span>
+                  <span style={{ padding: '0 0.7rem', color: '#fff', fontSize: '0.85rem', fontWeight: 700 }}>{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: '#fff', width: '32px', height: '32px', cursor: 'pointer' }}
+                    style={{ background: 'transparent', border: 'none', color: '#fff', width: '30px', height: '30px', cursor: 'pointer', fontWeight: 700 }}
                   >
                     +
                   </button>
@@ -232,15 +257,17 @@ export default function ProductModal({
             </div>
 
             {/* CTAs */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <button onClick={handleAdd} className="btn-gold" style={{ width: '100%', padding: '0.9rem' }}>
-                <ShoppingBag size={18} />
-                <span>Add to Shopping Cart</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <button onClick={handleDirectOrder} className="btn-primary" style={{ width: '100%' }}>
+                BUY NOW
               </button>
 
-              <button onClick={handleDirectWhatsApp} className="btn-whatsapp">
-                <MessageCircle size={18} />
-                <span>Order Now via WhatsApp</span>
+              <button
+                onClick={() => { onAddToCart(product, selectedSize, selectedColor, quantity); onClose(); }}
+                className="btn-secondary"
+                style={{ width: '100%' }}
+              >
+                ADD TO CART
               </button>
             </div>
           </div>
