@@ -141,17 +141,20 @@ export default function Footer({ onSelectCategory }) {
         </div>
 
         {/* Bottom Bar */}
-        <div style={{
-          borderTop: '1px solid var(--border-subtle)',
-          paddingTop: '1.4rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '1rem',
-          fontSize: '0.75rem',
-          color: 'var(--text-muted)'
-        }}>
+        <div
+          className="footer-bottom-bar"
+          style={{
+            borderTop: '1px solid var(--border-subtle)',
+            paddingTop: '1.4rem',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            fontSize: '0.75rem',
+            color: 'var(--text-muted)'
+          }}
+        >
           <div>
             © {new Date().getFullYear()} <strong>ATALYA CLOTHING</strong>. All Rights Reserved.
           </div>
@@ -160,6 +163,17 @@ export default function Footer({ onSelectCategory }) {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .footer-bottom-bar {
+            flex-direction: column !important;
+            justify-content: center !important;
+            text-align: center !important;
+            gap: 0.4rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

@@ -16,7 +16,7 @@ export default function TopBar() {
       zIndex: 60,
       textAlign: 'center'
     }}>
-      <div className="container" style={{
+      <div className="container topbar-container" style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -28,7 +28,9 @@ export default function TopBar() {
         <span>
           Free Islandwide Express Shipping on orders over <strong style={{ color: '#fff', borderBottom: '1px solid #fff', marginLeft: '4px' }}>LKR 15,000</strong>
         </span>
-        <span style={{ color: 'rgba(255,255,255,0.3)', margin: '0 0.2rem' }}>|</span>
+
+        <span className="topbar-pipe" style={{ color: 'rgba(255,255,255,0.3)', margin: '0 0.2rem' }}>|</span>
+
         <a
           href="tel:0774311313"
           style={{ color: '#a1a1aa', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem', transition: 'color 0.2s' }}
@@ -38,7 +40,9 @@ export default function TopBar() {
           <Phone size={12} />
           <span>Support: 077 431 1313</span>
         </a>
-        <span style={{ color: 'rgba(255,255,255,0.3)', margin: '0 0.2rem' }}>|</span>
+
+        <span className="topbar-pipe" style={{ color: 'rgba(255,255,255,0.3)', margin: '0 0.2rem' }}>|</span>
+
         <a
           href="https://www.facebook.com/profile.php?id=61592837846677"
           target="_blank"
@@ -50,6 +54,18 @@ export default function TopBar() {
           Facebook
         </a>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .topbar-pipe {
+            display: none !important;
+          }
+          .topbar-container {
+            flex-direction: column !important;
+            gap: 0.3rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
