@@ -177,7 +177,7 @@ export default function App() {
 
       {/* Main Catalog Area */}
       <main style={{ flex: 1 }}>
-        <div className="container" style={{ paddingTop: '2rem' }}>
+        <div className="container" style={{ paddingTop: '1rem' }}>
           <CategoryFilter
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}

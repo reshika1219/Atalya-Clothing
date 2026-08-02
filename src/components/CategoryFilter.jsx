@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, RotateCcw } from 'lucide-react';
+import { Search, RotateCcw, ChevronDown } from 'lucide-react';
 import { CATEGORIES, GENDERS } from '../data/products';
 
 export default function CategoryFilter({
@@ -21,7 +21,7 @@ export default function CategoryFilter({
       border: '1px solid var(--border-subtle)',
       borderRadius: 'var(--radius-md)',
       padding: '1.2rem 1.5rem',
-      marginBottom: '2rem'
+      marginBottom: '1.5rem'
     }}>
       {/* Gender & Search Header Row — Centered Flex */}
       <div style={{
@@ -29,8 +29,8 @@ export default function CategoryFilter({
         alignItems: 'center',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: '1.2rem',
-        marginBottom: '1.2rem'
+        gap: '1rem',
+        marginBottom: '1rem'
       }}>
         {/* Gender Filter Buttons */}
         <div style={{ display: 'flex', gap: '0.35rem', background: '#0a0a0c', padding: '0.25rem', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}>
@@ -58,7 +58,7 @@ export default function CategoryFilter({
         </div>
 
         {/* Search Bar */}
-        <div style={{ flex: 1, minWidth: '220px', maxWidth: '360px', position: 'relative' }}>
+        <div style={{ flex: 1, minWidth: '200px', maxWidth: '340px', position: 'relative' }}>
           <Search size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -81,29 +81,46 @@ export default function CategoryFilter({
           />
         </div>
 
-        {/* Sort Dropdown & Reset */}
+        {/* Sort Dropdown Container with Custom ChevronDown Arrow & Reset Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-            style={{
-              background: '#0a0a0c',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: '6px',
-              color: '#ffffff',
-              padding: '0.55rem 0.8rem',
-              fontSize: '0.78rem',
-              outline: 'none',
-              cursor: 'pointer',
-              fontWeight: 600
-            }}
-          >
-            <option value="featured">SORT: FEATURED</option>
-            <option value="price-asc">PRICE: LOW TO HIGH</option>
-            <option value="price-desc">PRICE: HIGH TO LOW</option>
-            <option value="rating">TOP RATED</option>
-            <option value="newest">NEWEST ARRIVALS</option>
-          </select>
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              style={{
+                background: '#0a0a0c',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '6px',
+                color: '#ffffff',
+                padding: '0.55rem 2.2rem 0.55rem 0.8rem',
+                fontSize: '0.78rem',
+                outline: 'none',
+                cursor: 'pointer',
+                fontWeight: 600,
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                appearance: 'none'
+              }}
+            >
+              <option value="featured">SORT: FEATURED</option>
+              <option value="price-asc">PRICE: LOW TO HIGH</option>
+              <option value="price-desc">PRICE: HIGH TO LOW</option>
+              <option value="rating">TOP RATED</option>
+              <option value="newest">NEWEST ARRIVALS</option>
+            </select>
+
+            <ChevronDown
+              size={14}
+              style={{
+                position: 'absolute',
+                right: '0.75rem',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: '#a1a1aa',
+                pointerEvents: 'none'
+              }}
+            />
+          </div>
 
           <button
             onClick={onResetFilters}
@@ -132,7 +149,7 @@ export default function CategoryFilter({
         justifyContent: 'center',
         flexWrap: 'wrap',
         gap: '1.2rem',
-        paddingTop: '0.9rem',
+        paddingTop: '0.8rem',
         borderTop: '1px solid var(--border-subtle)'
       }}>
         {/* Category Pills */}

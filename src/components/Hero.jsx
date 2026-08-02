@@ -10,11 +10,11 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      minHeight: '80vh',
+      minHeight: '65vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '5rem 1.5rem 4rem 1.5rem',
+      padding: '4rem 1.5rem 2rem 1.5rem',
       overflow: 'hidden',
       background: '#0a0a0c',
       textAlign: 'center'
@@ -40,7 +40,7 @@ export default function Hero() {
           background: 'rgba(0, 0, 0, 0.65)',
           backdropFilter: 'blur(8px)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
-          marginBottom: '1.8rem'
+          marginBottom: '1.5rem'
         }}>
           <span style={{ fontSize: '0.75rem', letterSpacing: '3px', textTransform: 'uppercase', color: '#ffffff', fontWeight: 700 }}>
             SPRING / SUMMER '26
@@ -67,7 +67,7 @@ export default function Hero() {
           letterSpacing: '9px',
           textTransform: 'uppercase',
           color: '#ffffff',
-          marginBottom: '1.6rem',
+          marginBottom: '1.4rem',
           textAlign: 'center',
           opacity: 0.9
         }}>
@@ -79,7 +79,7 @@ export default function Hero() {
           letterSpacing: '3.5px',
           textTransform: 'uppercase',
           color: '#a1a1aa',
-          marginBottom: '1.8rem',
+          marginBottom: '1.4rem',
           fontWeight: 600,
           textAlign: 'center'
         }}>
@@ -90,7 +90,7 @@ export default function Hero() {
           fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
           color: 'var(--text-secondary)',
           maxWidth: '620px',
-          margin: '0 auto 2.5rem auto',
+          margin: '0 auto 2rem auto',
           fontWeight: 400,
           lineHeight: 1.65,
           textAlign: 'center'
@@ -104,16 +104,14 @@ export default function Hero() {
           alignItems: 'center',
           justifyContent: 'center',
           gap: '1rem',
-          margin: '0 auto',
-          width: '100%',
-          maxWidth: '400px'
+          margin: '0 auto'
         }}>
-          <button onClick={scrollToCatalog} className="btn-primary hero-btn" style={{ padding: '1rem 2.5rem', fontSize: '0.85rem' }}>
+          <button onClick={scrollToCatalog} className="btn-primary hero-btn" style={{ padding: '0.9rem 2.2rem', fontSize: '0.85rem' }}>
             <span>SHOP COLLECTION</span>
             <ArrowRight size={15} />
           </button>
 
-          <a href="#story-section" className="btn-secondary hero-btn" style={{ padding: '1rem 2.2rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)' }}>
+          <a href="#story-section" className="btn-secondary hero-btn" style={{ padding: '0.9rem 2rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)' }}>
             <span>OUR STORY</span>
           </a>
         </div>
@@ -124,6 +122,8 @@ export default function Hero() {
           .hero-cta-container {
             flex-direction: column !important;
             gap: 0.8rem !important;
+            width: 100% !important;
+            max-width: 320px !important;
           }
           .hero-btn {
             width: 100% !important;
