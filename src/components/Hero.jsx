@@ -99,24 +99,37 @@ export default function Hero() {
         </p>
 
         {/* Centered CTAs */}
-        <div style={{
+        <div className="hero-cta-container" style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '1rem',
-          flexWrap: 'wrap',
-          margin: '0 auto'
+          margin: '0 auto',
+          width: '100%',
+          maxWidth: '400px'
         }}>
-          <button onClick={scrollToCatalog} className="btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '0.85rem' }}>
+          <button onClick={scrollToCatalog} className="btn-primary hero-btn" style={{ padding: '1rem 2.5rem', fontSize: '0.85rem' }}>
             <span>SHOP COLLECTION</span>
             <ArrowRight size={15} />
           </button>
 
-          <a href="#story-section" className="btn-secondary" style={{ padding: '1rem 2.2rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)' }}>
+          <a href="#story-section" className="btn-secondary hero-btn" style={{ padding: '1rem 2.2rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)' }}>
             <span>OUR STORY</span>
           </a>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          .hero-cta-container {
+            flex-direction: column !important;
+            gap: 0.8rem !important;
+          }
+          .hero-btn {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
