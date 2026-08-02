@@ -98,7 +98,7 @@ export default function Hero() {
           Contemporary outerwear, tailored blazers, evening wear, and modern elevated apparel designed in Sri Lanka.
         </p>
 
-        {/* Centered CTAs */}
+        {/* Centered Equal-Width CTAs */}
         <div className="hero-cta-container" style={{
           display: 'flex',
           alignItems: 'center',
@@ -106,12 +106,12 @@ export default function Hero() {
           gap: '1rem',
           margin: '0 auto'
         }}>
-          <button onClick={scrollToCatalog} className="btn-primary hero-btn" style={{ padding: '0.9rem 2.2rem', fontSize: '0.85rem' }}>
+          <button onClick={scrollToCatalog} className="btn-primary hero-btn" style={{ minWidth: '220px', padding: '0.95rem 1.5rem', fontSize: '0.85rem', justifyContent: 'center' }}>
             <span>SHOP COLLECTION</span>
             <ArrowRight size={15} />
           </button>
 
-          <a href="#story-section" className="btn-secondary hero-btn" style={{ padding: '0.9rem 2rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)' }}>
+          <a href="#story-section" className="btn-secondary hero-btn" style={{ minWidth: '220px', padding: '0.95rem 1.5rem', fontSize: '0.85rem', background: 'rgba(0,0,0,0.5)', justifyContent: 'center' }}>
             <span>OUR STORY</span>
           </a>
         </div>
@@ -127,6 +127,7 @@ export default function Hero() {
           }
           .hero-btn {
             width: 100% !important;
+            min-width: 0 !important;
           }
         }
       `}</style>
