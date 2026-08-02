@@ -10,15 +10,15 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      minHeight: '80vh',
+      minHeight: '82vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       padding: '5rem 1.5rem',
-      backgroundImage: `linear-gradient(180deg, rgba(10,10,12,0.72) 0%, rgba(10,10,12,0.95) 100%), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80")`,
+      backgroundImage: `linear-gradient(180deg, rgba(10,10,12,0.65) 0%, rgba(10,10,12,0.85) 65%, #0a0a0c 100%), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80")`,
       backgroundSize: 'cover',
-      backgroundPosition: 'center top',
-      borderBottom: '1px solid var(--border-subtle)',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
       textAlign: 'center'
     }}>
       <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '850px', margin: '0 auto' }}>
