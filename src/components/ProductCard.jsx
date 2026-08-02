@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Eye, ShoppingBag, Star, MessageCircle } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 export default function ProductCard({
   product,
@@ -10,15 +10,23 @@ export default function ProductCard({
   onWhatsAppOrder
 }) {
   return (
-    <div className="glass-card" style={{
-      display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden',
-      position: 'relative',
-      height: '100%'
-    }}>
-      {/* Image & Overlay Controls */}
-      <div style={{ position: 'relative', paddingTop: '125%', overflow: 'hidden', background: '#121218' }}>
+    <div
+      className="glass-card"
+      onClick={() => onQuickView(product)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        cursor: 'pointer',
+        height: '100%',
+        background: '#121216',
+        borderRadius: 'var(--radius-md)',
+        border: '1px solid var(--border-subtle)',
+        transition: 'all 0.3s ease'
+      }}
+    >
+      {/* Product Image Frame */}
+      <div style={{ position: 'relative', paddingTop: '125%', overflow: 'hidden', background: '#0a0a0c' }}>
         <img
           src={product.image}
           alt={product.name}
@@ -29,159 +37,78 @@ export default function ProductCard({
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+            transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.04)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         />
 
-        {/* Top Badges */}
-        <div style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.3rem', zIndex: 2 }}>
-          {product.isNew && <span className="badge-gold">NEW</span>}
+        {/* Badges */}
+        <div style={{ position: 'absolute', top: '0.75rem', left: '0.75rem', display: 'flex', gap: '0.35rem', zIndex: 2 }}>
+          {product.isNew && <span className="badge-accent">NEW</span>}
           <span className="badge-tag">{product.gender}</span>
         </div>
 
-        {/* Action Buttons (Wishlist & Quick View) */}
-        <div style={{ position: 'absolute', top: '0.8rem', right: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', zIndex: 2 }}>
-          <button
-            onClick={() => onToggleWishlist(product)}
-            title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-            style={{
-              background: 'rgba(11, 11, 14, 0.75)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid var(--border-light)',
-              borderRadius: '50%',
-              width: '36px',
-              height: '36px',
-              display: 'flex',
-              alignItems: 'center',
-              justify: 'center',
-              cursor: 'pointer',
-              color: isWishlisted ? '#e63946' : '#fff',
-              transition: 'var(--transition-fast)'
-            }}
-          >
-            <Heart size={16} fill={isWishlisted ? '#e63946' : 'none'} />
-          </button>
-
-          <button
-            onClick={() => onQuickView(product)}
-            title="Quick View"
-            style={{
-              background: 'rgba(11, 11, 14, 0.75)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid var(--border-light)',
-              borderRadius: '50%',
-              width: '36px',
-              height: '36px',
-              display: 'flex',
-              alignItems: 'center',
-              justify: 'center',
-              cursor: 'pointer',
-              color: '#fff',
-              transition: 'var(--transition-fast)'
-            }}
-          >
-            <Eye size={16} />
-          </button>
-        </div>
+        {/* Wishlist Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleWishlist(product);
+          }}
+          title={isWishlisted ? "Remove from Wishlist" : "Save to Wishlist"}
+          style={{
+            position: 'absolute',
+            top: '0.75rem',
+            right: '0.75rem',
+            background: 'rgba(0, 0, 0, 0.65)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '32px',
+            height: '32px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: isWishlisted ? '#e63946' : '#ffffff',
+            zIndex: 2,
+            transition: 'transform 0.2s ease'
+          }}
+        >
+          <Heart size={15} fill={isWishlisted ? '#e63946' : 'none'} />
+        </button>
       </div>
 
-      {/* Product Content Details */}
-      <div style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+      {/* Product Content Details — Centered alignment like Carnage & Pepper Street */}
+      <div style={{ padding: '1rem 1.1rem 1.2rem 1.1rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between', textAlign: 'center' }}>
         <div>
-          {/* Category & Rating */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-            <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--gold-accent)' }}>
-              {product.category}
-            </span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', fontSize: '0.75rem', color: '#ffb703' }}>
-              <Star size={12} fill="#ffb703" />
-              <span>{product.rating}</span>
-              <span style={{ color: 'var(--text-muted)' }}>({product.reviewsCount})</span>
-            </div>
-          </div>
+          <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--text-muted)', fontWeight: 700, display: 'block' }}>
+            {product.category}
+          </span>
 
-          {/* Title */}
-          <h3
-            onClick={() => onQuickView(product)}
-            className="font-serif"
-            style={{
-              fontSize: '1.2rem',
-              fontWeight: 600,
-              color: '#fff',
-              marginBottom: '0.4rem',
-              cursor: 'pointer',
-              lineHeight: 1.2
-            }}
-          >
+          <h3 style={{ fontSize: '0.98rem', fontWeight: 700, color: '#ffffff', marginTop: '0.2rem', marginBottom: '0.35rem', lineHeight: 1.3 }}>
             {product.name}
           </h3>
 
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.8rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-            {product.tagline}
-          </p>
-
-          {/* Color Swatches */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '1rem' }}>
-            {product.colors.map((col, idx) => (
-              <span
-                key={idx}
-                title={col.name}
-                style={{
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '50%',
-                  backgroundColor: col.hex,
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  display: 'inline-block'
-                }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Pricing & CTA Buttons */}
-        <div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem', marginBottom: '0.9rem' }}>
-            <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
-              Rs. {product.price.toLocaleString()}
-            </span>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.9rem' }}>
+            LKR {product.price.toLocaleString()}
             {product.originalPrice && (
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                Rs. {product.originalPrice.toLocaleString()}
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textDecoration: 'line-through', marginLeft: '0.5rem', fontWeight: 400 }}>
+                LKR {product.originalPrice.toLocaleString()}
               </span>
             )}
           </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 42px', gap: '0.5rem' }}>
-            <button
-              onClick={() => onAddToCart(product, product.sizes[0], product.colors[0].name)}
-              className="btn-gold"
-              style={{ width: '100%', padding: '0.65rem 0.8rem', fontSize: '0.78rem' }}
-            >
-              <ShoppingBag size={14} />
-              <span>Add to Cart</span>
-            </button>
-
-            <button
-              onClick={() => onWhatsAppOrder(product)}
-              title="Order on WhatsApp"
-              style={{
-                background: '#25d366',
-                border: 'none',
-                borderRadius: '6px',
-                color: '#000',
-                display: 'flex',
-                alignItems: 'center',
-                justify: 'center',
-                cursor: 'pointer'
-              }}
-            >
-              <MessageCircle size={16} />
-            </button>
-          </div>
         </div>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onQuickView(product);
+          }}
+          className="btn-primary"
+          style={{ width: '100%', padding: '0.7rem 0.8rem', fontSize: '0.75rem' }}
+        >
+          QUICK VIEW
+        </button>
       </div>
     </div>
   );
