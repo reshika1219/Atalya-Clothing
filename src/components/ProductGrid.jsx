@@ -11,27 +11,28 @@ export default function ProductGrid({
   onResetFilters
 }) {
   return (
-    <section id="catalog-section" style={{ padding: '2rem 0 5rem 0' }}>
+    <section id="catalog-section" style={{ padding: '1rem 0 5rem 0' }}>
       <div className="container">
-        {/* Section Heading & Counter */}
-        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
-          <div>
-            <h2 className="font-serif" style={{ fontSize: '2.2rem', fontWeight: 500, color: '#fff' }}>
-              Curated Collections
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-              Showing {products.length} elegant items
-            </p>
-          </div>
+        {/* Centered Section Heading */}
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.3rem' }}>
+            CURATED COLLECTIONS
+          </h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 600 }}>
+            SHOWING {products.length} ITEMS
+          </p>
         </div>
 
-        {/* Product Cards Grid */}
+        {/* Product Cards Grid — Responsive 2-column on mobile, 4-column on desktop */}
         {products.length > 0 ? (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.8rem'
-          }}>
+          <div
+            className="product-grid-layout"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: '1.6rem'
+            }}
+          >
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -45,20 +46,29 @@ export default function ProductGrid({
             ))}
           </div>
         ) : (
-          /* Empty State */
-          <div className="glass-card" style={{ padding: '4rem 2rem', textAlign: 'center' }}>
-            <h3 className="font-serif" style={{ fontSize: '1.8rem', color: '#fff', marginBottom: '0.8rem' }}>
-              No Luxury Items Match Your Selection
+          /* Centered Empty State */
+          <div style={{ padding: '4rem 2rem', textAlign: 'center', background: '#121216', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', textTransform: 'uppercase', marginBottom: '0.6rem' }}>
+              NO ITEMS MATCH YOUR SELECTION
             </h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '500px', margin: '0 auto 1.5rem auto' }}>
-              Try adjusting your search criteria, category filters, or price slider to explore our full collection.
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '460px', margin: '0 auto 1.5rem auto', fontSize: '0.85rem' }}>
+              Try adjusting your search query, category filters, or price slider.
             </p>
-            <button onClick={onResetFilters} className="btn-gold">
-              Reset Filters
+            <button onClick={onResetFilters} className="btn-primary">
+              RESET FILTERS
             </button>
           </div>
         )}
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .product-grid-layout {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.8rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
