@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, MessageCircle, Phone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
   const scrollToCatalog = () => {
@@ -7,114 +7,88 @@ export default function Hero() {
     if (catalogElem) catalogElem.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // WhatsApp link targeting hidden 0717995000 behind wa.me
-  const whatsappUrl = `https://wa.me/94717995000?text=${encodeURIComponent('Hello Atalya Clothing! I would like to inquire about your luxury collection.')}`;
-
   return (
     <section style={{
       position: 'relative',
-      minHeight: '85vh',
+      minHeight: '75vh',
       display: 'flex',
       alignItems: 'center',
-      justify: 'center',
-      overflow: 'hidden',
+      justifyContent: 'center',
       padding: '4rem 1.5rem',
-      background: 'radial-gradient(circle at 50% 30%, #1c1c28 0%, #0b0b0e 70%)'
+      background: 'linear-gradient(180deg, #0a0a0c 0%, #121216 100%)',
+      borderBottom: '1px solid var(--border-subtle)',
+      textAlign: 'center'
     }}>
-      {/* Background Ambient Glow Elements */}
-      <div style={{
-        position: 'absolute',
-        top: '20%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '500px',
-        height: '500px',
-        background: 'radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(0,0,0,0) 70%)',
-        filter: 'blur(60px)',
-        pointerEvents: 'none'
-      }} />
-
-      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '900px' }}>
-        {/* Brand Tag Badge */}
+      <div className="container" style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto' }}>
+        {/* Season Pill */}
         <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.6rem',
-          padding: '0.4rem 1.2rem',
-          borderRadius: '30px',
-          background: 'rgba(212, 175, 55, 0.1)',
-          border: '1px solid var(--border-gold)',
-          marginBottom: '2rem',
-          boxShadow: '0 4px 20px rgba(212, 175, 55, 0.15)'
+          display: 'inline-block',
+          padding: '0.3rem 0.9rem',
+          borderRadius: '4px',
+          background: 'rgba(255, 255, 255, 0.06)',
+          border: '1px solid var(--border-subtle)',
+          marginBottom: '1.5rem'
         }}>
-          <Sparkles size={14} style={{ color: 'var(--gold-primary)' }} />
-          <span style={{ fontSize: '0.8rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold-light)', fontWeight: 600 }}>
-            New Unisex & Contemporary Collection
+          <span style={{ fontSize: '0.72rem', letterSpacing: '2.5px', textTransform: 'uppercase', color: '#ffffff', fontWeight: 700 }}>
+            SPRING / SUMMER '26
           </span>
         </div>
 
         {/* Main Headline */}
-        <h1 className="font-serif" style={{
-          fontSize: 'clamp(2.8rem, 6vw, 4.8rem)',
-          fontWeight: 400,
-          lineHeight: 1.1,
-          letterSpacing: '1px',
+        <h1 style={{
+          fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: '-1px',
           marginBottom: '1.2rem',
-          color: '#ffffff'
+          color: '#ffffff',
+          textTransform: 'uppercase',
+          textAlign: 'center'
         }}>
-          Redefining Contemporary Luxury & Couture
+          ATALYA CLOTHING
         </h1>
 
-        {/* Sub-Headline & Tagline */}
-        <p className="font-cursive" style={{
-          fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-          color: 'var(--gold-primary)',
+        <p style={{
+          fontSize: '0.85rem',
+          letterSpacing: '3px',
+          textTransform: 'uppercase',
+          color: '#a1a1aa',
           marginBottom: '1.8rem',
-          textShadow: '0 2px 10px rgba(212,175,55,0.3)'
+          fontWeight: 600,
+          textAlign: 'center'
         }}>
           where elegance begins
         </p>
 
         <p style={{
-          fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)',
+          fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
           color: 'var(--text-secondary)',
-          maxWidth: '680px',
-          margin: '0 auto 2.5rem auto',
-          fontWeight: 300,
-          lineHeight: 1.7
+          maxWidth: '600px',
+          margin: '0 auto 2.4rem auto',
+          fontWeight: 400,
+          lineHeight: 1.6,
+          textAlign: 'center'
         }}>
-          Explore meticulously tailored outerwear, evening gowns, silk blouses, and refined luxury staples designed to transcend seasons and embrace timeless elegance.
+          Contemporary outerwear, tailored blazers, evening wear, and everyday elevated staples.
         </p>
 
-        {/* CTA Buttons */}
+        {/* Centered CTAs */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          justify: 'center',
-          gap: '1.2rem',
-          flexWrap: 'wrap'
+          justifyContent: 'center',
+          gap: '1rem',
+          flexWrap: 'wrap',
+          margin: '0 auto'
         }}>
-          <button onClick={scrollToCatalog} className="btn-gold" style={{ padding: '1rem 2.2rem', fontSize: '0.9rem' }}>
-            <span>Explore Collection</span>
-            <ArrowRight size={18} />
+          <button onClick={scrollToCatalog} className="btn-primary" style={{ padding: '0.95rem 2.4rem' }}>
+            <span>SHOP COLLECTION</span>
+            <ArrowRight size={15} />
           </button>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline-gold"
-            style={{ padding: '0.95rem 2rem', fontSize: '0.9rem' }}
-          >
-            <MessageCircle size={18} style={{ color: '#25d366' }} />
-            <span>Order via WhatsApp</span>
+          <a href="#story-section" className="btn-secondary" style={{ padding: '0.95rem 2rem' }}>
+            <span>OUR STORY</span>
           </a>
-        </div>
-
-        {/* Direct Phone Call Indicator */}
-        <div style={{ marginTop: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-          <Phone size={14} style={{ color: 'var(--gold-primary)' }} />
-          <span>Call Support & Inquiries: <strong style={{ color: '#fff' }}>077 431 1313</strong></span>
         </div>
       </div>
     </section>
