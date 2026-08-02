@@ -10,17 +10,27 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      minHeight: '82vh',
+      minHeight: '75vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '5rem 1.5rem',
-      backgroundImage: `linear-gradient(180deg, rgba(10,10,12,0.65) 0%, rgba(10,10,12,0.85) 65%, #0a0a0c 100%), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80")`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      backgroundRepeat: 'no-repeat',
+      padding: '5rem 1.5rem 4rem 1.5rem',
+      overflow: 'hidden',
+      background: '#0a0a0c',
       textAlign: 'center'
     }}>
+      {/* Background Image Layer — Fades to 100% Solid #0a0a0c at 82% */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: `linear-gradient(180deg, rgba(10,10,12,0.55) 0%, rgba(10,10,12,0.85) 60%, #0a0a0c 82%, #0a0a0c 100%), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        backgroundRepeat: 'no-repeat',
+        zIndex: 1,
+        pointerEvents: 'none'
+      }} />
+
       <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '850px', margin: '0 auto' }}>
         {/* Season Badge */}
         <div style={{
