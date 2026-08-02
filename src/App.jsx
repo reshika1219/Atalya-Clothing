@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { PRODUCTS } from './data/products';
+import SplashScreen from './components/SplashScreen';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -132,12 +133,12 @@ export default function App() {
     setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
 
-  // WhatsApp Order Direct Routing (Hidden 0717995000 in wa.me link)
+  // WhatsApp Order Direct Routing
   const handleWhatsAppOrder = (product, size, color, quantity = 1) => {
     const selectedSize = size || product.sizes[0];
     const selectedColor = color || product.colors[0].name;
 
-    const message = `*INQUIRY / ORDER - ATALYA CLOTHING*\n_where elegance begins_\n\n*Item:* ${product.name}\n*Price:* Rs. ${product.price.toLocaleString()}\n*Size:* ${selectedSize}\n*Color:* ${selectedColor}\n*Quantity:* ${quantity}\n\nPlease confirm availability and delivery details. Thank you!`;
+    const message = `*INQUIRY / ORDER - ATALYA CLOTHING*\n\n*Item:* ${product.name}\n*Price:* LKR ${product.price.toLocaleString()}\n*Size:* ${selectedSize}\n*Color:* ${selectedColor}\n*Quantity:* ${quantity}\n\nPlease confirm availability and delivery details. Thank you!`;
 
     const targetWhatsAppUrl = `https://wa.me/94717995000?text=${encodeURIComponent(message)}`;
     window.open(targetWhatsAppUrl, '_blank');
@@ -153,10 +154,13 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
+      {/* Splash Screen / Initial Loading Overlay */}
+      <SplashScreen />
+
       {/* Top Banner Announcement Ticker */}
       <TopBar />
 
-      {/* Glass Header Navigation */}
+      {/* Header Navigation */}
       <Navbar
         cartCount={cartItems.reduce((acc, item) => acc + item.quantity, 0)}
         wishlistCount={wishlistIds.length}
@@ -173,7 +177,7 @@ export default function App() {
 
       {/* Main Catalog Area */}
       <main style={{ flex: 1 }}>
-        <div className="container" style={{ paddingTop: '2.5rem' }}>
+        <div className="container" style={{ paddingTop: '2rem' }}>
           <CategoryFilter
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
