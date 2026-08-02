@@ -23,22 +23,22 @@ export default function Toast({ toast, onClose }) {
         zIndex: 2000,
         background: 'var(--bg-glass)',
         backdropFilter: 'blur(16px)',
-        border: '1px solid var(--border-gold)',
+        border: '1px solid var(--border-accent)',
         borderRadius: '10px',
         padding: '0.9rem 1.4rem',
         display: 'flex',
         alignItems: 'center',
         gap: '0.8rem',
-        boxShadow: 'var(--shadow-gold)',
+        boxShadow: 'var(--shadow-dark)',
         maxWidth: '380px'
       }}
     >
       {toast.type === 'cart' ? (
-        <ShoppingBag size={20} style={{ color: 'var(--gold-primary)' }} />
+        <ShoppingBag size={20} style={{ color: 'var(--accent)' }} />
       ) : toast.type === 'wishlist' ? (
         <Heart size={20} style={{ color: '#e63946' }} fill="#e63946" />
       ) : (
-        <CheckCircle size={20} style={{ color: '#25d366' }} />
+        <CheckCircle size={20} style={{ color: '#fff' }} />
       )}
 
       <div style={{ flex: 1 }}>
