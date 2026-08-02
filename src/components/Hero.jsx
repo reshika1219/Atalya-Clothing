@@ -7,6 +7,11 @@ export default function Hero() {
     if (catalogElem) catalogElem.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToStory = () => {
+    const storyElem = document.getElementById('story-section');
+    if (storyElem) storyElem.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section style={{
       position: 'relative',
@@ -98,7 +103,7 @@ export default function Hero() {
           Contemporary outerwear, tailored blazers, evening wear, and modern elevated apparel designed in Sri Lanka.
         </p>
 
-        {/* Centered Equal-Height CTAs */}
+        {/* Centered Equal-Height & Equal-Animation CTAs */}
         <div className="hero-cta-container" style={{
           display: 'flex',
           alignItems: 'center',
@@ -115,15 +120,17 @@ export default function Hero() {
               fontSize: '0.85rem',
               justifyContent: 'center',
               alignItems: 'center',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              border: '1px solid transparent',
+              lineHeight: 1
             }}
           >
             <span>SHOP COLLECTION</span>
             <ArrowRight size={15} />
           </button>
 
-          <a
-            href="#story-section"
+          <button
+            onClick={scrollToStory}
             className="btn-secondary hero-btn"
             style={{
               height: '48px',
@@ -132,11 +139,13 @@ export default function Hero() {
               background: 'rgba(0,0,0,0.5)',
               justifyContent: 'center',
               alignItems: 'center',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              border: '1px solid var(--border-strong)',
+              lineHeight: 1
             }}
           >
             <span>OUR STORY</span>
-          </a>
+          </button>
         </div>
       </div>
 
