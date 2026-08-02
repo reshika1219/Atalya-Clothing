@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import { Search, RotateCcw } from 'lucide-react';
 import { CATEGORIES, GENDERS } from '../data/products';
 
 export default function CategoryFilter({
@@ -16,103 +16,108 @@ export default function CategoryFilter({
   onResetFilters
 }) {
   return (
-    <div className="glass-card" style={{ padding: '1.5rem', marginBottom: '2.5rem' }}>
-      {/* Top Search & Controls Row */}
+    <div style={{
+      background: '#121216',
+      border: '1px solid var(--border-subtle)',
+      borderRadius: 'var(--radius-md)',
+      padding: '1.2rem 1.5rem',
+      marginBottom: '2rem'
+    }}>
+      {/* Gender & Search Header Row — Centered Flex */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        justify: 'space-between',
+        justifyContent: 'center',
         flexWrap: 'wrap',
         gap: '1.2rem',
-        marginBottom: '1.5rem'
+        marginBottom: '1.2rem'
       }}>
-        {/* Gender Tabs */}
-        <div style={{ display: 'flex', gap: '0.4rem', background: 'rgba(0,0,0,0.4)', padding: '0.3rem', borderRadius: '8px', border: '1px solid var(--border-light)' }}>
+        {/* Gender Filter Buttons */}
+        <div style={{ display: 'flex', gap: '0.35rem', background: '#0a0a0c', padding: '0.25rem', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}>
           {GENDERS.map((gender) => (
             <button
               key={gender}
               onClick={() => setActiveGender(gender)}
               style={{
-                background: activeGender === gender ? 'var(--gold-gradient)' : 'transparent',
-                color: activeGender === gender ? '#000' : 'var(--text-secondary)',
+                background: activeGender === gender ? '#ffffff' : 'transparent',
+                color: activeGender === gender ? '#000000' : '#a1a1aa',
                 fontWeight: activeGender === gender ? 700 : 500,
                 border: 'none',
-                padding: '0.45rem 1rem',
-                borderRadius: '6px',
+                padding: '0.4rem 0.9rem',
+                borderRadius: '4px',
                 cursor: 'pointer',
-                fontSize: '0.82rem',
+                fontSize: '0.78rem',
                 letterSpacing: '0.5px',
-                transition: 'var(--transition-fast)'
+                textTransform: 'uppercase',
+                transition: 'all 0.2s ease'
               }}
             >
-              {gender === 'All' ? 'All Genders' : gender}
+              {gender === 'All' ? 'ALL' : gender}
             </button>
           ))}
         </div>
 
-        {/* Search Input Bar */}
-        <div style={{ flex: 1, minWidth: '240px', maxWidth: '400px', position: 'relative' }}>
-          <Search size={16} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+        {/* Search Bar */}
+        <div style={{ flex: 1, minWidth: '220px', maxWidth: '360px', position: 'relative' }}>
+          <Search size={15} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
-            placeholder="Search dresses, blazers, silk shirts..."
+            placeholder="Search catalog..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: '100%',
-              background: 'rgba(0, 0, 0, 0.4)',
-              border: '1px solid var(--border-light)',
-              borderRadius: '8px',
-              padding: '0.65rem 1rem 0.65rem 2.6rem',
+              background: '#0a0a0c',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '6px',
+              padding: '0.55rem 1rem 0.55rem 2.4rem',
               color: '#fff',
-              fontSize: '0.88rem',
+              fontSize: '0.82rem',
               outline: 'none',
               transition: 'border-color 0.2s'
             }}
-            onFocus={(e) => e.target.style.borderColor = 'var(--gold-primary)'}
-            onBlur={(e) => e.target.style.borderColor = 'var(--border-light)'}
+            onFocus={(e) => e.target.style.borderColor = '#ffffff'}
+            onBlur={(e) => e.target.style.borderColor = 'var(--border-subtle)'}
           />
         </div>
 
-        {/* Sorting Dropdown & Reset */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <SlidersHorizontal size={14} style={{ color: 'var(--gold-primary)' }} />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              style={{
-                background: 'rgba(0, 0, 0, 0.4)',
-                border: '1px solid var(--border-light)',
-                borderRadius: '8px',
-                color: 'var(--text-primary)',
-                padding: '0.6rem 0.8rem',
-                fontSize: '0.82rem',
-                outline: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              <option value="featured">Featured First</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Top Rated</option>
-              <option value="newest">Newest Arrivals</option>
-            </select>
-          </div>
+        {/* Sort Dropdown & Reset */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            style={{
+              background: '#0a0a0c',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '6px',
+              color: '#ffffff',
+              padding: '0.55rem 0.8rem',
+              fontSize: '0.78rem',
+              outline: 'none',
+              cursor: 'pointer',
+              fontWeight: 600
+            }}
+          >
+            <option value="featured">SORT: FEATURED</option>
+            <option value="price-asc">PRICE: LOW TO HIGH</option>
+            <option value="price-desc">PRICE: HIGH TO LOW</option>
+            <option value="rating">TOP RATED</option>
+            <option value="newest">NEWEST ARRIVALS</option>
+          </select>
 
           <button
             onClick={onResetFilters}
             title="Reset Filters"
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-light)',
+              background: '#0a0a0c',
+              border: '1px solid var(--border-subtle)',
               color: 'var(--text-muted)',
-              padding: '0.6rem',
-              borderRadius: '8px',
+              padding: '0.55rem',
+              borderRadius: '6px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              justify: 'center'
+              justifyContent: 'center'
             }}
           >
             <RotateCcw size={14} />
@@ -120,31 +125,34 @@ export default function CategoryFilter({
         </div>
       </div>
 
-      {/* Category Pills & Price Slider */}
+      {/* Category Pills & Price Slider — Centered Alignment */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        justify: 'space-between',
+        justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: '1rem',
-        paddingTop: '1rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+        gap: '1.2rem',
+        paddingTop: '0.9rem',
+        borderTop: '1px solid var(--border-subtle)'
       }}>
         {/* Category Pills */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               style={{
-                background: activeCategory === cat ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
-                color: activeCategory === cat ? 'var(--gold-primary)' : 'var(--text-secondary)',
-                border: activeCategory === cat ? '1px solid var(--gold-primary)' : '1px solid var(--border-light)',
-                padding: '0.4rem 0.9rem',
-                borderRadius: '20px',
-                fontSize: '0.8rem',
+                background: activeCategory === cat ? '#ffffff' : 'transparent',
+                color: activeCategory === cat ? '#000000' : '#a1a1aa',
+                border: activeCategory === cat ? '1px solid #ffffff' : '1px solid var(--border-subtle)',
+                padding: '0.35rem 0.8rem',
+                borderRadius: '4px',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
                 cursor: 'pointer',
-                transition: 'var(--transition-fast)'
+                transition: 'all 0.2s ease'
               }}
             >
               {cat}
@@ -154,8 +162,8 @@ export default function CategoryFilter({
 
         {/* Price Slider */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            Max Price: <strong style={{ color: 'var(--gold-primary)' }}>Rs. {maxPrice.toLocaleString()}</strong>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Max: <strong style={{ color: '#ffffff' }}>LKR {maxPrice.toLocaleString()}</strong>
           </span>
           <input
             type="range"
@@ -165,9 +173,9 @@ export default function CategoryFilter({
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
             style={{
-              accentColor: 'var(--gold-primary)',
+              accentColor: '#ffffff',
               cursor: 'pointer',
-              width: '120px'
+              width: '110px'
             }}
           />
         </div>
