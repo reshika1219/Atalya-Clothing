@@ -1,95 +1,88 @@
 import React, { useState } from 'react';
-import { Phone, Mail, Facebook, MessageCircle, MapPin, ChevronDown, ChevronUp, Clock, HelpCircle } from 'lucide-react';
+import { Phone, Mail, Facebook, MessageSquare, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 
 export default function ContactSection() {
   const [openFaq, setOpenFaq] = useState(null);
 
   const faqs = [
     {
-      q: "How do I place an order via WhatsApp?",
-      a: "Simply browse our collections, select your items or add them to your shopping cart, then click 'Complete Order via WhatsApp'. Our system will automatically format your order summary so you can confirm size, color, and delivery details directly with our team!"
+      q: "HOW DO I PLACE AN ORDER?",
+      a: "Simply browse our collection, select your preferred size and color, and click 'BUY NOW' or 'PROCEED TO CHECKOUT'. Your order summary will be automatically formatted for instant order confirmation!"
     },
     {
-      q: "What is your delivery timeframe across Sri Lanka?",
-      a: "We offer express Islandwide delivery! Orders in Colombo and suburbs are delivered within 1–2 business days. Outstation deliveries take 2–3 business days. Orders over Rs. 15,000 enjoy FREE express delivery."
+      q: "WHAT IS THE DELIVERY TIMEFRAME ACROSS SRI LANKA?",
+      a: "We offer express Islandwide delivery across Sri Lanka. Orders in Colombo and suburbs are delivered within 1–2 business days. Outstation deliveries take 2–3 business days. Orders over LKR 15,000 enjoy FREE express delivery."
     },
     {
-      q: "Can I exchange an item if the size doesn't fit?",
-      a: "Yes! We offer hassle-free size exchanges within 7 days of delivery as long as the tags remain intact and the garment is unworn. Contact us via phone (077 431 1313) or WhatsApp for quick size assistance."
+      q: "CAN I EXCHANGE AN ITEM IF THE SIZE DOESN'T FIT?",
+      a: "Yes! We offer hassle-free size exchanges within 7 days of delivery as long as the tags remain intact and the garment is unworn. Contact us via phone (077 431 1313) for quick assistance."
     },
     {
-      q: "What payment options are available?",
-      a: "We accept Direct Bank Transfer, Online Payment Gateway links, and Cash on Delivery (COD) for eligible locations across Sri Lanka."
+      q: "WHAT PAYMENT OPTIONS ARE AVAILABLE?",
+      a: "We accept Bank Transfers, Online Payment Gateway links, and Cash on Delivery (COD) for eligible locations."
     }
   ];
 
-  // Hidden 0717995000 in wa.me link
-  const whatsappUrl = `https://wa.me/94717995000?text=${encodeURIComponent('Hello Atalya Clothing! I would like to inquire about placing an order.')}`;
+  const orderUrl = `https://wa.me/94717995000?text=${encodeURIComponent('Hello Atalya Clothing! I would like to place an order.')}`;
 
   return (
-    <section id="contact-section" style={{ padding: '6rem 0', background: 'var(--bg-primary)' }}>
+    <section id="contact-section" style={{ padding: '5rem 0', background: 'var(--bg-primary)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 4rem auto' }}>
-          <h2 className="font-serif" style={{ fontSize: '2.5rem', color: '#fff', marginBottom: '0.6rem' }}>
-            Connect With Atalya Clothing
+        <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 3.5rem auto' }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
+            CONNECT WITH US
           </h2>
-          <p className="font-cursive" style={{ fontSize: '1.8rem', color: 'var(--gold-primary)', marginBottom: '1rem' }}>
-            where elegance begins
-          </p>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-            We are here to assist with custom fitting recommendations, order tracking, and personal styling inquiries.
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            We are here to assist with custom fitting recommendations, order tracking, and inquiries.
           </p>
         </div>
 
         {/* Contact Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '1.5rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+          gap: '1.2rem',
           marginBottom: '4rem'
         }}>
           {/* Phone Call Card */}
           <a
             href="tel:0774311313"
-            className="glass-card"
-            style={{ padding: '2rem', textAlign: 'center', textDecoration: 'none', display: 'block' }}
+            style={{ padding: '1.8rem 1.4rem', textAlign: 'center', textDecoration: 'none', display: 'block', background: '#121216', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}
           >
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(212,175,55,0.15)', color: 'var(--gold-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
-              <Phone size={22} />
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#0a0a0c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.8rem auto' }}>
+              <Phone size={18} />
             </div>
-            <h3 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.4rem' }}>Phone Assistance</h3>
-            <p style={{ color: 'var(--gold-primary)', fontWeight: 700, fontSize: '1.2rem', marginBottom: '0.2rem' }}>077 431 1313</p>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Mon - Sat: 9 AM - 7 PM</span>
+            <h3 style={{ color: '#fff', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>PHONE SUPPORT</h3>
+            <p style={{ color: '#fff', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.2rem' }}>077 431 1313</p>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Mon - Sat: 9 AM - 7 PM</span>
           </a>
 
-          {/* WhatsApp Direct Card */}
+          {/* Direct Messaging Card */}
           <a
-            href={whatsappUrl}
+            href={orderUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-card"
-            style={{ padding: '2rem', textAlign: 'center', textDecoration: 'none', display: 'block', borderColor: 'rgba(37,211,102,0.4)' }}
+            style={{ padding: '1.8rem 1.4rem', textAlign: 'center', textDecoration: 'none', display: 'block', background: '#121216', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}
           >
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,211,102,0.15)', color: '#25d366', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
-              <MessageCircle size={22} />
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#0a0a0c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.8rem auto' }}>
+              <MessageSquare size={18} />
             </div>
-            <h3 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.4rem' }}>WhatsApp Express</h3>
-            <p style={{ color: '#25d366', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.2rem' }}>Order via WhatsApp</p>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Instant message & order setup</span>
+            <h3 style={{ color: '#fff', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>DIRECT ORDERING</h3>
+            <p style={{ color: '#fff', fontWeight: 800, fontSize: '1.05rem', marginBottom: '0.2rem' }}>INSTANT ASSISTANCE</p>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Quick order setup</span>
           </a>
 
           {/* Email Card */}
           <a
             href="mailto:atalyaclothing@gmail.com"
-            className="glass-card"
-            style={{ padding: '2rem', textAlign: 'center', textDecoration: 'none', display: 'block' }}
+            style={{ padding: '1.8rem 1.4rem', textAlign: 'center', textDecoration: 'none', display: 'block', background: '#121216', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}
           >
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(212,175,55,0.15)', color: 'var(--gold-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
-              <Mail size={22} />
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#0a0a0c', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.8rem auto' }}>
+              <Mail size={18} />
             </div>
-            <h3 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.4rem' }}>Email Inquiries</h3>
-            <p style={{ color: 'var(--gold-light)', fontWeight: 600, fontSize: '0.92rem', marginBottom: '0.2rem' }}>atalyaclothing@gmail.com</p>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>24/7 Email Customer Support</span>
+            <h3 style={{ color: '#fff', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>EMAIL SUPPORT</h3>
+            <p style={{ color: '#fff', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.2rem' }}>atalyaclothing@gmail.com</p>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>24/7 Email assistance</span>
           </a>
 
           {/* Facebook Card */}
@@ -97,39 +90,37 @@ export default function ContactSection() {
             href="https://www.facebook.com/profile.php?id=61592837846677"
             target="_blank"
             rel="noopener noreferrer"
-            className="glass-card"
-            style={{ padding: '2rem', textAlign: 'center', textDecoration: 'none', display: 'block' }}
+            style={{ padding: '1.8rem 1.4rem', textAlign: 'center', textDecoration: 'none', display: 'block', background: '#121216', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}
           >
-            <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(24,119,242,0.15)', color: '#1877f2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
-              <Facebook size={22} />
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#0a0a0c', color: '#1877f2', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 0.8rem auto' }}>
+              <Facebook size={18} />
             </div>
-            <h3 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '0.4rem' }}>Facebook Community</h3>
-            <p style={{ color: '#1877f2', fontWeight: 600, fontSize: '0.95rem', marginBottom: '0.2rem' }}>@atalyaclothing</p>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Follow for new drop reveals</span>
+            <h3 style={{ color: '#fff', fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>FACEBOOK</h3>
+            <p style={{ color: '#1877f2', fontWeight: 600, fontSize: '0.88rem', marginBottom: '0.2rem' }}>@atalyaclothing</p>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Follow for drop updates</span>
           </a>
         </div>
 
         {/* FAQ Accordion */}
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.5rem', justifyContent: 'center' }}>
-            <HelpCircle size={20} style={{ color: 'var(--gold-primary)' }} />
-            <h3 className="font-serif" style={{ fontSize: '1.8rem', color: '#fff' }}>Frequently Asked Questions</h3>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.2rem', justifyContent: 'center' }}>
+            <HelpCircle size={18} style={{ color: '#fff' }} />
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '1px' }}>FREQUENTLY ASKED QUESTIONS</h3>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="glass-card"
-                style={{ padding: '1.2rem 1.5rem', cursor: 'pointer' }}
+                style={{ padding: '1rem 1.2rem', cursor: 'pointer', background: '#121216', borderRadius: '6px', border: '1px solid var(--border-subtle)' }}
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h4 style={{ fontSize: '0.98rem', fontWeight: 600, color: '#fff' }}>{faq.q}</h4>
-                  {openFaq === index ? <ChevronUp size={18} style={{ color: 'var(--gold-primary)' }} /> : <ChevronDown size={18} style={{ color: '#a1a1aa' }} />}
+                  <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{faq.q}</h4>
+                  {openFaq === index ? <ChevronUp size={16} style={{ color: '#fff' }} /> : <ChevronDown size={16} style={{ color: '#a1a1aa' }} />}
                 </div>
                 {openFaq === index && (
-                  <p style={{ marginTop: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.8rem' }}>
+                  <p style={{ marginTop: '0.7rem', color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: 1.6, borderTop: '1px solid var(--border-subtle)', paddingTop: '0.7rem' }}>
                     {faq.a}
                   </p>
                 )}
