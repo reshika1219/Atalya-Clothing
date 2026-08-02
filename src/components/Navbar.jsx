@@ -27,40 +27,42 @@ export default function Navbar({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1rem 1.5rem',
+        padding: '0.9rem 1.5rem',
         minHeight: '70px'
       }}>
-        {/* Brand Logo */}
+        {/* Brand Logo & High-Fashion Typography */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
           <img
             src="/logo.jpg"
             alt="Atalya Clothing"
             style={{
-              height: '40px',
+              height: '42px',
               width: 'auto',
               borderRadius: '2px',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
             }}
           />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{
-              fontFamily: 'var(--font-sans)',
+              fontFamily: 'var(--font-serif)',
               fontWeight: 800,
-              fontSize: '1.2rem',
-              letterSpacing: '3px',
-              color: '#fff',
+              fontSize: '1.35rem',
+              letterSpacing: '4px',
+              color: '#ffffff',
               textTransform: 'uppercase',
               lineHeight: 1
             }}>
               ATALYA
             </span>
             <span style={{
-              fontSize: '0.62rem',
+              fontSize: '0.58rem',
               color: '#a1a1aa',
-              letterSpacing: '2px',
+              letterSpacing: '3px',
               textTransform: 'uppercase',
-              lineHeight: 1.3,
-              marginTop: '2px'
+              fontWeight: 700,
+              lineHeight: 1.2,
+              marginTop: '3px'
             }}>
               COLLECTION
             </span>
