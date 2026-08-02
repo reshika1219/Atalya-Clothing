@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Heart, Search, Menu, X, Phone } from 'lucide-react';
+import { ShoppingBag, Heart, Search, Menu, X } from 'lucide-react';
 
 export default function Navbar({
   cartCount,
@@ -26,148 +26,100 @@ export default function Navbar({
       <div className="container" style={{
         display: 'flex',
         alignItems: 'center',
-        justify: 'space-between',
-        padding: '0.85rem 1.5rem',
-        minHeight: '75px'
+        justifyContent: 'space-between',
+        padding: '1rem 1.5rem',
+        minHeight: '70px'
       }}>
-        {/* Brand Logo & Tagline */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', textDecoration: 'none' }}>
+        {/* Brand Logo */}
+        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
           <img
             src="/logo.jpg"
             alt="Atalya Clothing"
             style={{
-              height: '46px',
+              height: '40px',
               width: 'auto',
-              borderRadius: '4px',
-              border: '1px solid var(--border-gold)',
+              borderRadius: '2px',
               objectFit: 'cover'
             }}
           />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{
               fontFamily: 'var(--font-sans)',
-              fontWeight: 700,
-              fontSize: '1.25rem',
-              letterSpacing: '3.5px',
+              fontWeight: 800,
+              fontSize: '1.2rem',
+              letterSpacing: '3px',
               color: '#fff',
               textTransform: 'uppercase',
-              lineHeight: 1.1
+              lineHeight: 1
             }}>
               ATALYA
             </span>
-            <span className="font-cursive" style={{
-              fontSize: '0.95rem',
-              color: 'var(--gold-primary)',
-              letterSpacing: '0.5px',
-              lineHeight: 1
+            <span style={{
+              fontSize: '0.62rem',
+              color: '#a1a1aa',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              lineHeight: 1.3,
+              marginTop: '2px'
             }}>
-              where elegance begins
+              COLLECTION
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <a
-            href="#catalog-section"
-            onClick={() => handleGenderSelect('All')}
-            style={{
-              color: activeGender === 'All' ? 'var(--gold-primary)' : '#a1a1aa',
-              textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              transition: 'color 0.2s'
-            }}
-          >
-            Collections
-          </a>
-          <a
-            href="#catalog-section"
-            onClick={() => handleGenderSelect('Women')}
-            style={{
-              color: activeGender === 'Women' ? 'var(--gold-primary)' : '#a1a1aa',
-              textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              transition: 'color 0.2s'
-            }}
-          >
-            Women
-          </a>
-          <a
-            href="#catalog-section"
-            onClick={() => handleGenderSelect('Men')}
-            style={{
-              color: activeGender === 'Men' ? 'var(--gold-primary)' : '#a1a1aa',
-              textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              transition: 'color 0.2s'
-            }}
-          >
-            Men
-          </a>
-          <a
-            href="#catalog-section"
-            onClick={() => handleGenderSelect('Unisex')}
-            style={{
-              color: activeGender === 'Unisex' ? 'var(--gold-primary)' : '#a1a1aa',
-              textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              transition: 'color 0.2s'
-            }}
-          >
-            Unisex
-          </a>
+        {/* Navigation Links */}
+        <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '2.2rem' }}>
+          {[
+            { label: 'ALL', gender: 'All' },
+            { label: 'WOMEN', gender: 'Women' },
+            { label: 'MEN', gender: 'Men' },
+            { label: 'UNISEX', gender: 'Unisex' }
+          ].map((item) => (
+            <a
+              key={item.gender}
+              href="#catalog-section"
+              onClick={() => handleGenderSelect(item.gender)}
+              style={{
+                color: activeGender === item.gender ? '#ffffff' : '#a1a1aa',
+                borderBottom: activeGender === item.gender ? '2px solid #ffffff' : '2px solid transparent',
+                paddingBottom: '4px',
+                textDecoration: 'none',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                letterSpacing: '1.5px',
+                textTransform: 'uppercase',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
           <a
             href="#story-section"
             style={{
               color: '#a1a1aa',
               textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
+              fontSize: '0.8rem',
+              fontWeight: 700,
               letterSpacing: '1.5px',
               textTransform: 'uppercase',
               transition: 'color 0.2s'
             }}
           >
-            Our Story
-          </a>
-          <a
-            href="#contact-section"
-            style={{
-              color: '#a1a1aa',
-              textDecoration: 'none',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              letterSpacing: '1.5px',
-              textTransform: 'uppercase',
-              transition: 'color 0.2s'
-            }}
-          >
-            Contact
+            OUR STORY
           </a>
         </nav>
 
-        {/* Actions (Search, Wishlist, Cart) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Action Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           {/* Search Toggle */}
           <div style={{ position: 'relative' }}>
             {searchOpen ? (
-              <div style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.06)', borderRadius: '20px', padding: '0.2rem 0.6rem', border: '1px solid var(--border-gold)' }}>
-                <Search size={16} style={{ color: 'var(--gold-primary)' }} />
+              <div style={{ display: 'flex', alignItems: 'center', background: '#181820', borderRadius: '4px', padding: '0.25rem 0.6rem', border: '1px solid var(--border-strong)' }}>
+                <Search size={15} style={{ color: '#a1a1aa' }} />
                 <input
                   type="text"
-                  placeholder="Search elegance..."
+                  placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
@@ -177,106 +129,48 @@ export default function Navbar({
                     outline: 'none',
                     color: '#fff',
                     padding: '0.3rem 0.5rem',
-                    fontSize: '0.85rem',
-                    width: '160px'
+                    fontSize: '0.82rem',
+                    width: '150px'
                   }}
                 />
-                <button
-                  onClick={() => setSearchOpen(false)}
-                  style={{ background: 'transparent', border: 'none', color: '#a1a1aa', cursor: 'pointer' }}
-                >
+                <button onClick={() => setSearchOpen(false)} style={{ background: 'transparent', border: 'none', color: '#a1a1aa', cursor: 'pointer' }}>
                   <X size={14} />
                 </button>
               </div>
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                title="Search Products"
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#f5f5f7',
-                  cursor: 'pointer',
-                  padding: '0.4rem',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}
+                title="Search"
+                style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', padding: '0.4rem', display: 'flex', alignItems: 'center' }}
               >
-                <Search size={20} />
+                <Search size={19} />
               </button>
             )}
           </div>
 
-          {/* Wishlist Icon with Counter */}
+          {/* Wishlist */}
           <button
             onClick={onOpenWishlist}
             title="Wishlist"
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#f5f5f7',
-              cursor: 'pointer',
-              padding: '0.4rem',
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center'
-            }}
+            style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', padding: '0.4rem', position: 'relative', display: 'flex', alignItems: 'center' }}
           >
-            <Heart size={20} style={{ color: wishlistCount > 0 ? '#e63946' : '#f5f5f7' }} />
+            <Heart size={19} style={{ color: wishlistCount > 0 ? '#e63946' : '#fff' }} />
             {wishlistCount > 0 && (
-              <span style={{
-                position: 'absolute',
-                top: '0',
-                right: '0',
-                background: 'var(--gold-primary)',
-                color: '#000',
-                fontSize: '0.65rem',
-                fontWeight: 700,
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+              <span style={{ position: 'absolute', top: '2px', right: '2px', background: '#ffffff', color: '#000', fontSize: '0.62rem', fontWeight: 800, width: '15px', height: '15px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {wishlistCount}
               </span>
             )}
           </button>
 
-          {/* Cart Icon with Counter */}
+          {/* Cart Bag */}
           <button
             onClick={onOpenCart}
-            title="Shopping Cart"
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#f5f5f7',
-              cursor: 'pointer',
-              padding: '0.4rem',
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center'
-            }}
+            title="Cart"
+            style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', padding: '0.4rem', position: 'relative', display: 'flex', alignItems: 'center' }}
           >
-            <ShoppingBag size={21} style={{ color: 'var(--gold-primary)' }} />
+            <ShoppingBag size={20} />
             {cartCount > 0 && (
-              <span style={{
-                position: 'absolute',
-                top: '-2px',
-                right: '-2px',
-                background: 'var(--gold-gradient)',
-                color: '#000',
-                fontSize: '0.68rem',
-                fontWeight: 800,
-                width: '18px',
-                height: '18px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 2px 8px rgba(212,175,55,0.5)'
-              }}>
+              <span style={{ position: 'absolute', top: '1px', right: '1px', background: '#ffffff', color: '#000', fontSize: '0.62rem', fontWeight: 800, width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {cartCount}
               </span>
             )}
@@ -286,36 +180,21 @@ export default function Navbar({
           <button
             className="mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: '#fff',
-              cursor: 'pointer',
-              padding: '0.4rem',
-              display: 'none'
-            }}
+            style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', padding: '0.4rem', display: 'none' }}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div style={{
-          background: 'var(--bg-secondary)',
-          borderTop: '1px solid var(--border-light)',
-          padding: '1.5rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem'
-        }}>
-          <a href="#catalog-section" onClick={() => handleGenderSelect('All')} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>All Collections</a>
-          <a href="#catalog-section" onClick={() => handleGenderSelect('Women')} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Women's Collection</a>
-          <a href="#catalog-section" onClick={() => handleGenderSelect('Men')} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Men's Collection</a>
-          <a href="#catalog-section" onClick={() => handleGenderSelect('Unisex')} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Unisex Collection</a>
-          <a href="#story-section" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Our Story</a>
-          <a href="#contact-section" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Contact & Store Info</a>
+        <div style={{ background: '#121216', borderTop: '1px solid var(--border-subtle)', padding: '1.2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+          <a href="#catalog-section" onClick={() => handleGenderSelect('All')} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>ALL COLLECTIONS</a>
+          <a href="#catalog-section" onClick={() => handleGenderSelect('Women')} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>WOMEN</a>
+          <a href="#catalog-section" onClick={() => handleGenderSelect('Men')} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>MEN</a>
+          <a href="#catalog-section" onClick={() => handleGenderSelect('Unisex')} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>UNISEX</a>
+          <a href="#story-section" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px' }}>OUR STORY</a>
         </div>
       )}
 
